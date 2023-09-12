@@ -2,6 +2,7 @@ const app = Vue.createApp({
     data(){
         return {
             url: 'http://www.google.com',
+            auxBooks: [],
             books: [
                 {title: 'name of the wind', author: 'patrick rothfuss', img:'assets/1.jpg', isFav: true},
                 {title: 'the way of kings', author: 'Brandon rothfuss', img:'assets/2.jpg', isFav: false},
@@ -11,6 +12,7 @@ const app = Vue.createApp({
             //author: 'Brandon Sanderson',
             //age: 45,
             showBooks: true,
+            showFavBooks: false,
             x: 0,
             y: 0
         }
@@ -22,6 +24,16 @@ const app = Vue.createApp({
         //},
         toggleShowBooks(){
             this.showBooks = !this.showBooks
+        },
+        toggleShowFilteredBooks(){
+            if (!this.showFavBooks) {
+                this.auxBooks = this.books
+                this.books = this.books.filter((book) => book.isFav)
+            }
+            else{
+                this.books = this.auxBooks
+            }
+            this.showFavBooks = !this.showFavBooks
         },
         handleEvent(e, data){
             console.log(e)

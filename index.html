@@ -14,7 +14,7 @@
             display: inline-block;
         } */
         body{
-            background: #eee;
+            background: #000000;
             max-width: 960px;
             margin: 20px auto;
         }
@@ -50,7 +50,7 @@
         <div v-if="showBooks"> 
            <!-- <p> {{books[0].title}} - {{author}} - {{age}} </p> </div> -->
            <ul>
-            <li v-for="(book, index) in filteredBooks" @click="toggleFav(book)" :class="{fav: book.isFav}" >
+            <li v-for="(book, index) in books" @click="toggleFav(book)" :class="{fav: book.isFav}" >
                 <img :src="book.img" :alt="book.title" height="300">
                 <h3>{{book.title}}</h3>
                 <p>{{book.author}}</p>
@@ -64,8 +64,13 @@
             <span v-else> Show Books</span>
         </button>
 
+        $nbsp
+
+        <button @click="toggleShowFilteredBooks">
+            <span v-if="!showFavBooks"> Show Favorite Books</span>
+            <span v-else> Show All Books</span>
+        </button>
         <br>
-        
         
         <!-- 
         <div class="box" @mouseover="handleEvent($event, 5)"> mouseover (enter)</div>
